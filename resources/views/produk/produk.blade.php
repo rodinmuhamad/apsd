@@ -6,12 +6,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0 font-size-18">Master User</h4>
+                    <h4 class="mb-sm-0 font-size-18">Produk</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="/beranda">Home</a></li>
-                            <li class="breadcrumb-item active">Master User</li>
+                            <li class="breadcrumb-item active">Produk</li>
                         </ol>
                     </div>
 
@@ -38,9 +38,7 @@
                                         <td>No</td>
                                         <td>Image</td>
                                         <td>Name</td>
-                                        <td>Email</td>
-                                        <td>Password</td>
-                                        <td>Level</td>
+                                        <td>Harga</td
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,7 +67,7 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="id">
                         <div class="col-md-12">
-                            <label>Nama users</label>
+                            <label>Nama produk</label>
                             <input type="text" name="name" class="form-control" placeholder="Isi Nama" required>
                         </div>
                         <br>
@@ -79,7 +77,7 @@
                                 <div class="col-md-6">
                                     <label for="photo">
                                         <img id="imagePreview" style="max-width: 200px;max-height: 200px;"
-                                            src="{{ asset('minia/assets/no_photo.png') }}" />
+                                            src="{{ asset('assets/user/no_image.png') }}" />
                                     </label>
                                 </div>
                                 <div class="col-md-6">
@@ -92,29 +90,12 @@
                                 </div>
 
                                 <div class="col-md-12">
-                                    <label>email</label>
-                                    <input type="email" name="email" class="form-control" placeholder="Isi Username"
+                                    <label>harga</label>
+                                    <input type="harga" name="harga" class="form-control" placeholder="Isi Harga"
                                         required>
                                 </div>
 
-                                <div class="col-md-12">
-                                    <label>Password</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text showpassword"><i class="fa fa-eye"></i></span>
-                                        </div>
-                                        <input type="password" name="password" class="form-control inputpassword"
-                                            placeholder="Isi Passsword">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <label>Level</label>
-                                    <select name="level" class="form-control">
-                                        <option value="admin">Admin</option>
-                                        <option value="user">User</option>
-                                    </select>
-                                </div>
+                                
                             </div>
                         </div>
                         <br>
@@ -134,20 +115,11 @@
 
             $('#btn_form').click(function() {
                 $('#form input[name="id"]').val('');
-                $('#imagePreview').attr('src', "{{ asset('minia/assets/no_photo.png') }}");
+                $('#imagePreview').attr('src', "{{ asset('assets/user/no_image.png') }}");
                 $('#form')[0].reset();
                 $('#modal').modal('show');
             })
 
-            $(".showpassword").on('click', function() {
-                var input = $(".inputpassword");
-                if (input.attr("type") === "password") {
-                    input.attr("type", "text");
-                } else {
-                    input.attr("type", "password");
-                }
-
-            });
 
 
             $('#form').on('submit', function(e) {
@@ -186,7 +158,7 @@
                 //end image
 
                 $.ajax({
-                    url: "/user",
+                    url: "/produk",
                     type: 'post',
                     dataType: 'json',
                     processData: false,
@@ -207,7 +179,7 @@
             $('.table tbody').html('');
             $.ajax({
                 type: 'GET',
-                url: "/tableuser",
+                url: "/tableproduk",
                 dataType: 'text'
             }).done(function(data) {
                 $('.table tbody').html(data);
@@ -227,7 +199,7 @@
 
         function hapus(a) {
             $.ajax({
-                url: "/deleteuser",
+                url: "/deleteproduk",
                 type: 'GET',
                 dataType: 'json',
                 data: {
@@ -244,7 +216,7 @@
         function edit(a) {
             $('#form')[0].reset();
             $.ajax({
-                url: "/getuser",
+                url: "/getproduk",
                 type: 'get',
                 dataType: 'json',
                 data: {
@@ -253,9 +225,7 @@
             }).done(function(data) {
                 $('input[name="id"]').val(data[0].id);
                 $('input[name="name"]').val(data[0].name);
-                $('input[name="email"]').val(data[0].email);
-                $('input[name="password"]').val('');
-                $('select[name="level"]').val(data[0].level).change();
+                $('input[name="harga"]').val(data[0].harga);
                 $('#imagePreview').attr('src', '{{ asset('/') }}'+ (data[0].image == '' || data[0].image == null ? 'assets/user/no_photo.png' : data[0].image));
                 $('#modal').modal('show');
             }).fail(function(data) {

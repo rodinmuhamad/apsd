@@ -35,6 +35,11 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::get('/getakses', 'aksesController@edit');
     Route::post('/akses', 'aksesController@store');
     Route::get('/deleteakses', 'aksesController@destroy');
+    Route::get('/produk', 'produkController@index');
+    Route::get('/tableproduk', 'produkController@table');
+    Route::get('/getproduk', 'produkController@edit');
+    Route::post('/produk', 'produkController@store');
+    Route::get('/deleteproduk', 'produkController@destroy');
 });
 
 Route::group(['middleware' => ['auth','ceklevel:admin,user']], function () {
