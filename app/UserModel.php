@@ -9,6 +9,6 @@ class UserModel extends Model
     protected $table = "users";
     protected $primarykey = "id";
     protected $fillable = [
-    	'name', 'level','email', 'password','remember_token',
+    	'name', 'level','email', 'password','remember_token','image',
     ];
 }

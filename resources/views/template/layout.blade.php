@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="muhamad rodin" name="author" />
     <script>
-        var base_url = {{ asset('minia/') }}
+        var base_url = "{{ asset('minia/') }}"
     </script>
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('minia/assets/images/favicon.ico') }}">
@@ -31,6 +31,7 @@
     <!-- App Css-->
     <link href="{{ asset('minia/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
+    <script src="{{ asset('minia/assets/libs/jquery/jquery.min.js') }}"></script>
 </head>
 
 <body>
@@ -88,7 +89,7 @@
                             id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             <img class="rounded-circle header-profile-user"
-                                src="{{ asset('minia/assets/images/users/avatar-1.jpg') }}" alt="Header Avatar">
+                                src="{{ asset(auth()->user()->image == '' ? 'assets/user/no_photo.png' : auth()->user()->image) }}" alt="Header Avatar">
                             <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ auth()->user()->name }}</span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                         </button>

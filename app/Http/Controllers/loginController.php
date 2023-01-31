@@ -66,6 +66,7 @@ class loginController extends Controller
         $post["password"] = bcrypt($post["password"]);
         $post["level"] = "user";
         $post["remember_token"] = Str::random(60);
+        $post["image"] = 'assets/user/no_photo.png';
         
         $sv = UserModel::create($post);
         $result = array();

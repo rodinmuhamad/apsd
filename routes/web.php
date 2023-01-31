@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::get('/tableuser', 'userController@table');
     Route::get('/getuser', 'userController@edit');
     Route::post('/user', 'userController@store');
-    Route::delete('/user', 'userController@delete');
+    Route::get('/deleteuser', 'userController@destroy');
 });
 
 Route::group(['middleware' => ['auth','ceklevel:admin,user']], function () {
