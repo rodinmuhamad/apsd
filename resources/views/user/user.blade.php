@@ -104,7 +104,7 @@
                                             <span class="input-group-text showpassword"><i class="fa fa-eye"></i></span>
                                         </div>
                                         <input type="password" name="password" class="form-control inputpassword"
-                                            placeholder="Isi Passsword" required>
+                                            placeholder="Isi Passsword">
                                     </div>
                                 </div>
 
@@ -252,7 +252,7 @@
                     id: a
                 }
             }).done(function(data) {
-                $('input[name="id"]').val(data[0].id_user);
+                $('input[name="id"]').val(data[0].id);
                 $('input[name="name"]').val(data[0].name);
                 $('input[name="email"]').val(data[0].email);
                 $('input[name="password"]').val('');

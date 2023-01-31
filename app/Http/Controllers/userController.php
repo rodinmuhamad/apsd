@@ -89,6 +89,7 @@ class userController extends Controller
             if ($a->password == '') {
                 unset($post['password']);
             }
+            unset($post['_token']);
             $sv = UserModel::where('id', $a->id)->update($post);
             $result = array();
             if ($sv) {
