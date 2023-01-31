@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AksesModel;
 use App\UserModel;
 use Auth;
 use Illuminate\Http\Request;
@@ -18,6 +19,13 @@ class loginController extends Controller
     {
         //dd($r->all());
         if (Auth::attempt($r->only('email', 'password'))) {
+            if (Auth::check()) {
+                $get = AksesModel::where('user_id', auth()->user()->id)->get();
+                foreach ($get as $k) {
+                    $r->session()->put($k->akses, $k->akses);
+                }
+
+            }
             return redirect('beranda');
         }
         return redirect('login');
@@ -26,6 +34,7 @@ class loginController extends Controller
     public function logout(Request $r)
     {
         Auth::logout();
+        $r->session()->flush();
         return redirect('/login');
     }
     public function index()

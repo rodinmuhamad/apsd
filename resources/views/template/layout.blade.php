@@ -117,26 +117,33 @@
                 <div id="sidebar-menu">
                     <!-- Left Menu Start -->
                     <ul class="metismenu list-unstyled" id="side-menu">
-                        <li class="menu-title" data-key="t-menu">Menu</li>
-
+                        <li class="menu-title" data-key="t-menu">Menu </li>
+                        
                         <li>
                             <a href="/beranda">
                                 <i data-feather="home"></i>
                                 <span data-key="t-dashboard">Beranda</span>
                             </a>
                         </li>
+                        @if(Session::get('produk') != '')
                         <li>
                             <a href="/produk">
                                 <i data-feather="grid"></i>
                                 <span data-key="t-invoices">Produk</span>
                             </a>
                         </li>
+                        @endif
+                            
+                        @if(Session::get('order') != '')
                         <li>
                             <a href="/order">
                                 <i data-feather="file-text"></i>
                                 <span data-key="t-blog">Order</span>
                             </a>
                         </li>
+                        @endif
+                        
+                            
 
                         <li class="menu-title" data-key="t-menu">Master</li>
                         <li>
@@ -145,8 +152,14 @@
                                 <span data-key="t-authentication">Master Pengguna</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
+                                @if(Session::get('user') != '')
                                 <li><a href="/user" data-key="t-login">Kelola User</a></li>
+                                @endif
+                        
+                                @if(Session::get('akses') != '')
+                                    
                                 <li><a href="/akses" data-key="t-register">Kelola Akses Admin</a></li>
+                                @endif
                             </ul>
                         </li>
 
